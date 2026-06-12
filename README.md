@@ -102,5 +102,3 @@ Waveform demonstrating:
 Jeetendra M
 
 M.Tech VLSI Design
-
-Manipal Institute of Technology, Bengaluru
