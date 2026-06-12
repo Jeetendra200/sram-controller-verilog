@@ -78,7 +78,7 @@ vvp sim
 Open waveform:
 
 ```bash
-gtkwave waveform.vcd
+waveform.vcd
 ```
 
 ---
