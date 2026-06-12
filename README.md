@@ -1,33 +1,69 @@
 # SRAM Controller Design and Verification
 
-## Project Overview
+## Overview
 
-This project implements an SRAM Controller using Verilog HDL.
+This project implements an SRAM Controller using Verilog HDL. The controller supports memory write, read, clear, and repeat-copy operations along with error detection and command verification mechanisms.
 
-Supported Operations:
+The design was developed and verified using a custom Verilog testbench and waveform analysis.
 
-- Write
-- Read
-- Clear
-- Repeat Copy
-- PEC Verification
-- Command Verification
-- Internal Target Abort Detection
+---
+
+## Features
+
+### Write Operation (Command = 2'b00)
+
+* Writes input data to the specified SRAM address.
+
+### Read Operation (Command = 2'b01)
+
+* Reads data from the specified SRAM address.
+
+### Clear Operation (Command = 2'b10)
+
+* Clears the contents of the specified memory location.
+
+### Repeat Copy Operation (Command = 2'b11)
+
+* Writes the same data into multiple consecutive memory locations.
+
+### Error Detection
+
+* Data Error Detection using PEC verification.
+* Command Error Detection.
+* Internal Target Abort detection for invalid X/Z inputs.
+
+---
+
+## SRAM Controller Architecture
+
+```text
+                +----------------------+
+                |   SRAM Controller    |
+                +----------------------+
+                   |              |
+                   |              |
+            Command/Data      Status Flags
+                   |
+                   v
+             +-----------+
+             | SRAM Array|
+             +-----------+
+```
 
 ---
 
 ## Directory Structure
 
-```
+```text
 sram-controller-verilog
 │
 ├── rtl
 │   └── sram_controller.v
 │
-├── tb
+├── testbench
 │   └── tb_sram_controller.v
 │
-├── docs
+├── waveform
 │   └── waveform.png
 │
 └── README.md
@@ -35,65 +71,52 @@ sram-controller-verilog
 
 ---
 
-## Features
+## Test Cases
 
-### Write Command (00)
-
-Stores data at a specified address.
-
-### Read Command (01)
-
-Reads data from memory.
-
-### Clear Command (10)
-
-Clears the memory location.
-
-### Repeat Copy Command (11)
-
-Copies data into multiple consecutive addresses.
-
-### Error Detection
-
-- Data Error
-- Command Error
-- Internal Target Abort
+| Test Case                       | Status |
+| ------------------------------- | ------ |
+| Write Operation                 | Pass   |
+| Read Operation                  | Pass   |
+| Clear Operation                 | Pass   |
+| Repeat Copy Operation           | Pass   |
+| PEC Verification                | Pass   |
+| Command Verification            | Pass   |
+| Internal Target Abort Detection | Pass   |
 
 ---
 
-## Simulation
+## Simulation Flow
 
-Compile:
+Compile Design and Testbench:
 
 ```bash
-iverilog -o sim rtl/sram_controller.v tb/tb_sram_controller.v
+iverilog -o sim rtl/sram_controller.v testbench/tb_sram_controller.v
 ```
 
-Run:
+Run Simulation:
 
 ```bash
 vvp sim
 ```
 
-Open waveform:
+Generate Waveform:
 
 ```bash
-waveform.vcd
+gtkwave waveform.vcd
 ```
 
 ---
 
-## Results
+## Skills Demonstrated
 
-Waveform demonstrating:
-
-- Write Operation
-- Read Operation
-- Clear Operation
-- Repeat Copy Operation
-- Error Detection
-
-![Waveform](docs/waveform.png)
+* Verilog HDL
+* RTL Design
+* Memory Controller Design
+* Functional Verification
+* Testbench Development
+* Digital System Design
+* Error Detection Logic
+* Waveform Debugging
 
 ---
 
@@ -102,3 +125,8 @@ Waveform demonstrating:
 Jeetendra M
 
 M.Tech VLSI Design
+
+Manipal Institute of Technology, Bengaluru
+
+GitHub: https://github.com/Jeetendra200
+
